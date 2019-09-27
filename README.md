@@ -1,9 +1,9 @@
-#Almoço DB
+# Almoço DB
 
-##Tecnologias
-###Gradle
-###Spring
-###H2
+## Tecnologias
+### Gradle
+### Spring
+### H2
 
 ### Descrição
 #### A aplicação abre em um form para votar, basta escolher o restaurante e o usuário.
