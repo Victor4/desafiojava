@@ -1,0 +1,86 @@
+swagger: "2.0"
+
+schemes:
+  - http
+
+
+host: localhost:8085
+basePath: /bytebank-api/v1
+
+info:
+  version: 1.0.0
+  title: Votação Almoço DB
+  description: Realizar votação entre os colaboradores resultando em um restaurante para almoçar.
+
+paths:
+  '/voto':
+    post:
+      summary: Realizar Voto
+      description: Usuário vota em um restaurante
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      operationId: votacao  
+      parameters:
+        - in: body
+          name: votoForm_
+          schema:
+            $ref: '#/definitions/VotoForm'
+      responses:
+        201:
+          description: Cadastro efetuado com sucesso
+          schema:
+            $ref: '#/definitions/VotoDto'
+        400:
+          description: Requisição inválida
+        500:
+          description: Erro interno no servidor
+    get:
+      summary: Form para votar
+      description: Contem duas dropdows com usuarios e restaurantes para escolher o restaurante que o usuario votará.
+      responses:
+        200:
+          description: OK
+  '/resultados':
+    get:
+      summary: Tabela com dados das votações
+      description: Pagina apresenta uma tabela que contem todas as votações,o vencedor e os votos de cada votação.
+      responses:
+        200:
+          description: OK
+    
+       
+  
+definitions:
+
+  VotoForm:
+    type: object
+    properties:
+      Restaurante:
+        type: integer
+        format: int64
+        example: 1
+      Usuario:
+        type: integer
+        format: int64
+        example: 1
+  VotoDto:
+    type: object
+    properties:
+      Resposta:
+        type: object
+        properties:
+          nome:
+            type: string
+            example: Taile
+          localizacao:
+            type: string
+            example: assis brasil
+      Usuario:
+        type: object
+        properties:
+          nome:
+            type: string
+            example: Joao
+      

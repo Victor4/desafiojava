@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Votação Almoço DB</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container" style="margin-top: 10%">
+    <div class="card">
+        <div class="card-body">
+            <form action="#" th:action="@{/voto}" th:object="${votoForm}" method="post">
+                <table>
+                    <tr>
+                        <td >
+                            <h2>Votação na data:</h2>
+                        </td>
+                        <td>
+                            <p th:text="${dataAtual} " style="padding-left: 29px; font-size: 29px;" >
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td style="padding-right: 4%">
+                            <div class="form-group" style="width: 400px">
+                                <label for="restauranteDrop">Restaurantes Disponíveis</label>
+                                <select id="restauranteDrop" th:field="*{restaurante}">
+                                    <option value="">Selecione o Restaurante:</option>
+                                    <option th:each="restaurante : ${restaurantes}" th:value="${restaurante.id}" th:text="${restaurante.nome}"></option>
+                                </select>
+                                <small id="restauranteHelp" class="form-text text-muted">Restaurantes que não foram escolhidos na semana.</small>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label for="usuarioDrop">Usuários</label>
+                                <select id="usuarioDrop" th:field="*{usuario}">
+                                    <option value="">Selecione um Usuário</option>
+                                    <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome}"></option>
+                                </select>
+                                <small id="a" class="form-text text-muted">Todos os usuários (Incluindo os que ja votaram hoje).</small>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <button type="submit" class="btn btn-dark">Votar</button>
+                        </td>
+                        <td>
+                            <a class="nav-link active" href="/resultados">Resultados Votações (Ir para a pagina elege um vencedor do dia e o retira da votação)</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
